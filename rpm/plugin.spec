@@ -50,7 +50,11 @@ cmake \
     -Denable-hwkeyboard=OFF \
     ..
 
+pwd
+ls -la
 make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin || chmod -R uog+=r . || true
+pwd
+ls -la
 make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin 
 
 %install
