@@ -15,6 +15,7 @@ BuildRequires: cmake
 #BuildRequires: pkgconfig(Qt5Quick)
 
 BuildRequires: opt-qt5-qtbase-devel
+BuildRequires: opt-qt5-qtbase-private-devel
 BuildRequires: opt-qt5-qtdeclarative-devel
 #libQt5Quick.so.5(Qt_5_PRIVATE_API)(64bit)
 %{?_opt_qt5:Requires: %{_opt_qt5}%{?_isa} = %{_opt_qt5_version}}
@@ -34,13 +35,12 @@ applications using newer Qt.
 export QTDIR=%{_opt_qt5_prefix}
 touch .git
 
-rm -rf build
 mkdir -p build
 cd build
 
 export CMAKE_PREFIX_PATH=%{_opt_qt5_prefix}
 cmake \
-    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_PREFIX=%{_opt_qt5_prefix} \
     -Denable-docs=OFF \
     -Denable-tests=OFF \
     -Denable-glib=off \
@@ -51,12 +51,7 @@ cmake \
     -Denable-hwkeyboard=OFF \
     ..
 
-pwd
-ls -la
-make V=1 VERBOSE=1 -j1 maliitplatforminputcontextplugin || chmod -R uog+=r . || true
-pwd
-ls -la
-make V=1 VERBOSE=1 -j1 maliitplatforminputcontextplugin 
+make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin
 
 %install
 
