@@ -34,6 +34,7 @@ applications using newer Qt.
 export QTDIR=%{_opt_qt5_prefix}
 touch .git
 
+rm -rf build
 mkdir -p build
 cd build
 
@@ -52,10 +53,10 @@ cmake \
 
 pwd
 ls -la
-make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin || chmod -R uog+=r . || true
+make V=1 VERBOSE=1 -j1 maliitplatforminputcontextplugin || chmod -R uog+=r . || true
 pwd
 ls -la
-make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin 
+make V=1 VERBOSE=1 -j1 maliitplatforminputcontextplugin 
 
 %install
 
