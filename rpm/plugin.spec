@@ -15,6 +15,7 @@ BuildRequires: cmake
 #BuildRequires: pkgconfig(Qt5Quick)
 
 BuildRequires: opt-qt5-qtbase-devel
+BuildRequires: opt-qt5-qtdeclarative-devel
 #libQt5Quick.so.5(Qt_5_PRIVATE_API)(64bit)
 %{?_opt_qt5:Requires: %{_opt_qt5}%{?_isa} = %{_opt_qt5_version}}
 
