@@ -32,6 +32,7 @@ applications using newer Qt.
 
 %build
 export QTDIR=%{_opt_qt5_prefix}
+touch .git
 
 mkdir -p build
 cd build
@@ -49,7 +50,8 @@ cmake \
     -Denable-hwkeyboard=OFF \
     ..
 
-make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin
+make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin || chmod -R uog+=r . || true
+make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin 
 
 %install
 
