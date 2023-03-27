@@ -7,21 +7,20 @@ License: LGPLv2
 Url:     https://github.com/sailfishos-flatpak/maliit-framework
 Source0: %{name}-%{version}.tar.bz2
 
+# filter plugin provides
+%global __provides_exclude_from ^%{_opt_qt5_plugindir}/platforminputcontexts/.*\\.so$
+%{?opt_qt5_default_filter}
+
 BuildRequires: make
 BuildRequires: cmake
-
-#BuildRequires: pkgconfig(Qt5Core)
-#BuildRequires: pkgconfig(Qt5DBus)
-#BuildRequires: pkgconfig(Qt5Quick)
 
 BuildRequires: opt-qt5-qtbase-devel
 BuildRequires: opt-qt5-qtbase-private-devel
 BuildRequires: opt-qt5-qtdeclarative-devel
 #libQt5Quick.so.5(Qt_5_PRIVATE_API)(64bit)
 %{?_opt_qt5:Requires: %{_opt_qt5}%{?_isa} = %{_opt_qt5_version}}
-
-# filter plugin provides
-%global __provides_exclude_from ^%{_opt_qt5_plugindir}/platforminputcontexts/.*\\.so$
+Requires: opt-qt5-qtbase-gui
+Requires: opt-qt5-qtdeclarative
 
 %description
 This input plugin links Maliit keyboard provided by Sailfish OS to
