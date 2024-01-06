@@ -47,7 +47,7 @@ cmake \
     -Denable-wayland=OFF \
     -Denable-wayland-gtk=OFF \
     -Denable-qt5-inputcontext=ON \
-    -Denable-hwkeyboard=OFF \
+    -Denable-hwkeyboard=ON \
     ..
 
 make V=1 VERBOSE=1 %{?_smp_mflags} maliitplatforminputcontextplugin
